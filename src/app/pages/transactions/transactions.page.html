@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Transacciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button expand="block" (click)="newTransaction()">Nueva Transacción</ion-button>
+
+<ion-list>
+  <ion-item *ngFor="let t of transactions">
+    <ion-label>
+      {{ t.description }} - {{ t.amount }} - {{ t.type }}
+    </ion-label>
+    <ion-button fill="outline" color="primary" (click)="edit(t.id)">Editar</ion-button>
+    <ion-button fill="outline" color="danger" (click)="delete(t.id)">Eliminar</ion-button>
+  </ion-item>
+</ion-list>
+
+</ion-content>

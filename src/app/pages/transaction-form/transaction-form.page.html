@@ -1,30 +1,27 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Nueva Transacción</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-list>
+  <ion-item>
+    <ion-input [(ngModel)]="transaction.description" placeholder="Descripción"></ion-input>
+  </ion-item>
 
-<ion-content class="ion-padding">
-  <ion-list>
+  <ion-item>
+    <ion-input type="number" [(ngModel)]="transaction.amount" placeholder="Monto"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Tipo</ion-label>
+  </ion-item>
+
+  <ion-radio-group [(ngModel)]="transaction.type">
     <ion-item>
-      <ion-input placeholder="Descripción" [(ngModel)]="description"></ion-input>
+      <ion-label>Ingreso</ion-label>
+      <ion-radio value="ingreso"></ion-radio>
     </ion-item>
 
     <ion-item>
-      <ion-input type="number" placeholder="Monto" [(ngModel)]="amount"></ion-input>
+      <ion-label>Gasto</ion-label>
+      <ion-radio value="gasto"></ion-radio>
     </ion-item>
+  </ion-radio-group>
+</ion-list>
 
-    <ion-item>
-      <ion-select [(ngModel)]="type">
-        <ion-select-option value="income">Ingreso</ion-select-option>
-        <ion-select-option value="expense">Gasto</ion-select-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-item>
-      <ion-input type="date" [(ngModel)]="date"></ion-input>
-    </ion-item>
-  </ion-list>
-
-  <ion-button expand="block" (click)="save()">Guardar</ion-button>
-</ion-content>
+<ion-button expand="full" (click)="save()">Guardar</ion-button>

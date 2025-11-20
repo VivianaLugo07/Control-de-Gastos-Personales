@@ -18,13 +18,23 @@ export const routes: Routes = [
         (m) => m.TransactionsPage
       ),
   },
-  {
-    path: 'transaction-form',
-    loadComponent: () =>
-      import('./pages/transaction-form/transaction-form.page').then(
-        (m) => m.TransactionFormPage
-      ),
-  },
+  
+{
+  path: 'transaction-form',
+  loadComponent: () =>
+    import('./pages/transaction-form/transaction-form.page').then(
+      (m) => m.TransactionFormPage
+    ),
+},
+{
+  path: 'transaction-form/:id',
+  loadComponent: () =>
+    import('./pages/transaction-form/transaction-form.page').then(
+      (m) => m.TransactionFormPage
+    ),
+},
+
+
   {
     path: 'budgets',
     loadComponent: () =>

@@ -1,14 +1,13 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { provideIonicAngular } from '@ionic/angular/standalone';
-
 import { AppComponent } from './app/app.component';
+import { importProvidersFrom } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
+import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 
 bootstrapApplication(AppComponent, {
   providers: [
+    importProvidersFrom(IonicModule.forRoot()),
     provideRouter(routes),
-    provideIonicAngular(),
   ],
-}).catch((err) => console.error(err));
+});

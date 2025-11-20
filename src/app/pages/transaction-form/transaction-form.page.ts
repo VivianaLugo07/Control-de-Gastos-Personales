@@ -7,49 +7,44 @@ import { DataService } from '../../services/data';
 
 @Component({
   selector: 'app-transaction-form',
-  templateUrl: './transaction-form.page.html',
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule],
+  templateUrl: './transaction-form.page.html'
 })
 export class TransactionFormPage {
-
   id: string | null = null;
-
-
-  description: string = '';
-  amount: number = 0;
-  type: string = 'income';
-  date: string = '';   // 👈 AÑADIR ESTO
-
+  description = '';
+  amount = 0;
+  type = 'income';
+  date = '';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private dataService: DataService
-  ) { }
+  ) {}
 
-ionViewWillEnter() {
-  this.id = this.route.snapshot.paramMap.get('id'); // tipo string
+  ionViewWillEnter() {
+    this.id = this.route.snapshot.paramMap.get('id');
 
-  if (this.id) {
-    const t = this.dataService.getTransactionById(this.id);
-
-    if (t) {
-      this.description = t.description;
-      this.amount = t.amount;
-      this.type = t.type;
-      this.date = t.date; // si usas fecha
+    if (this.id) {
+      const t = this.dataService.getTransactionById(this.id);
+      if (t) {
+        this.description = t.description;
+        this.amount = t.amount;
+        this.type = t.type;
+        this.date = t.date;
+      }
     }
   }
-}
-
 
   save() {
     const trx = {
-      id: this.id || Date.now(),
+      id: this.id ?? Date.now(),
       description: this.description,
       amount: this.amount,
-      type: this.type
+      type: this.type,
+      date: this.date
     };
 
     if (this.id) {

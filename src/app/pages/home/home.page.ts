@@ -8,24 +8,27 @@ import { Transaction } from '../../models/transaction.model';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterLink], // 🔥 RouterLink agregado
+  imports: [IonicModule, CommonModule, RouterLink],
   templateUrl: './home.page.html',
 })
 export class HomePage {
-  totalIncome = 0;
-  totalExpense = 0;
+
+  totalIncome: number = 0;
+  totalExpense: number = 0;
 
   constructor(private data: DataService) {}
 
   ionViewWillEnter() {
+
     const transactions: Transaction[] = this.data.getTransactions();
 
     this.totalIncome = transactions
-      .filter((t: Transaction) => t?.type === 'income')
-      .reduce((a: number, b: Transaction) => a + Number(b.amount || 0), 0);
+      .filter((t: Transaction) => t.type === 'income')
+      .reduce((a: number, b: Transaction) => a + Number(b.amount), 0);
 
     this.totalExpense = transactions
-      .filter((t: Transaction) => t?.type === 'expense')
-      .reduce((a: number, b: Transaction) => a + Number(b.amount || 0), 0);
+      .filter((t: Transaction) => t.type === 'expense')
+      .reduce((a: number, b: Transaction) => a + Number(b.amount), 0);
+
   }
 }

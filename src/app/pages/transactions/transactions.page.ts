@@ -6,36 +6,29 @@ import { DataService } from '../../services/data';
 
 @Component({
   selector: 'app-transactions',
-  templateUrl: './transactions.page.html',
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterLink]
+  imports: [IonicModule, CommonModule, RouterLink],
+  templateUrl: './transactions.page.html'
 })
 export class TransactionsPage {
   transactions: any[] = [];
 
-  constructor(
-    private dataService: DataService,
-    private router: Router
-  ) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   ionViewWillEnter() {
     this.transactions = this.dataService.getTransactions();
   }
 
-  // 🔥 Este método faltaba
   newTransaction() {
     this.router.navigate(['/transaction-form']);
   }
 
-  edit(id: string) {
-  // Navega a la página de formulario pasando el id
-  this.router.navigate(['/transaction-form', id]);
-}
+  edit(id: any) {
+    this.router.navigate(['/transaction-form', id]);
+  }
 
-
-  delete(id: number) {
+  delete(id: any) {
     this.dataService.deleteTransaction(id);
     this.transactions = this.dataService.getTransactions();
   }
-  
 }
